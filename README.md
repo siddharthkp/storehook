@@ -114,6 +114,10 @@ export default () => (
 )
 ```
 
+#### how does it work?
+
+Check out the [source code](https://github.com/siddharthkp/storehook/blob/master/packages/storehook/index.js), it's ~70 lines with comments
+
 &nbsp;
 
 #### like it?
