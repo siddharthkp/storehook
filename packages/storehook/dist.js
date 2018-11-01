@@ -1,6 +1,8 @@
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 import React, { useContext, useReducer } from 'react';
+/* Hooks are going to be introduced in 16.7 */
+
 if (!React.version.includes('16.7')) console.warn('storehook needs a React version >=16.7.0-alpha.0');
 /*
   Create a global store context
@@ -32,40 +34,7 @@ const Provider = props => {
     }
   }, props.children);
 };
-/*
-  connect is a higher order component that passes state values
-  and a dispatch function to the component it wraps
-
-  this does not accept a mapStateToProps-type function like redux,
-  it passes ALL of the state the connected component _right now_
-*/
-
-
-const hoistedReducerPair = {
-  set: false
-};
-
-const connect = Component => {
-  /* Create a new component that will be returned instead of the original */
-  const ConnectedComponent = props => {
-    /* Grab the state and dispatch function with useContext hook */
-    const {
-      state,
-      dispatch
-    } = useContext(StoreContext);
-    /*
-      Render the original component with it's props and add
-      additional props for state and dispatch
-    */
-
-    return React.createElement(Component, _extends({}, props, state, {
-      dispatch: dispatch
-    }));
-  };
-
-  return ConnectedComponent;
-};
-/**/
+/* useStore */
 
 
 const useStore = () => {
@@ -77,6 +46,32 @@ const useStore = () => {
   /* Instead of rendering component, pass an array pair - hook style */
 
   return [state, dispatch];
+};
+/*
+  connect is a higher order component that passes state values
+  and a dispatch function to the component it wraps
+
+  class components cannot use hooks but they can be wrapped in a component
+  that does
+*/
+
+
+const connect = Component => {
+  /* Create a new component that will be returned instead of the original */
+  const ConnectedComponent = props => {
+    /* Get state and dispatch function from our useStore hook! */
+    const [state, dispatch] = useStore();
+    /*
+      Render the original component with it's props and add
+      additional props for state and dispatch
+    */
+
+    return React.createElement(Component, _extends({}, props, state, {
+      dispatch: dispatch
+    }));
+  };
+
+  return ConnectedComponent;
 };
 
 export { Provider, connect, useStore };

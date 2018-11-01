@@ -1,6 +1,6 @@
 {
   "name": "storehook",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "silly state management library built with hooks",
   "author": "siddharthkp",
   "main": "dist.js",

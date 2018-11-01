@@ -53,7 +53,7 @@ const connect = Component => {
 
   const ConnectedComponent = props => {
     /* Get state and dispatch function from our useStore hook! */
-    const [store, dispatch] = useStore()
+    const [state, dispatch] = useStore()
 
     /*
       Render the original component with it's props and add
