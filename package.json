@@ -8,11 +8,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "babel --presets @babel/preset-react packages/storehook/index.js -o packages/storehook/dist.js",
+    "build": "babel packages/storehook/index.js -o packages/storehook/dist.js --presets=@babel/env,@babel/react",
     "test": "cd packages/test-application && yarn test"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2"
+    "@babel/cli": "7.1.2"
   },
   "prettier": {
     "semi": false,
