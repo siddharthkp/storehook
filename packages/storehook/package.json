@@ -1,0 +1,21 @@
+{
+  "name": "storehook",
+  "version": "0.0.1",
+  "description": "silly state management library built with hooks",
+  "author": "siddharthkp",
+  "main": "dist.js",
+  "workspaces": [
+    "src",
+    "test"
+  ],
+  "peerDependencies": {
+    "react": ">=16.7.0-alpha.0"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "state",
+    "management"
+  ],
+  "license": "MIT"
+}

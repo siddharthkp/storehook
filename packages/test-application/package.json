@@ -1,0 +1,24 @@
+{
+  "name": "test-application",
+  "version": "0.0.0",
+  "private": "true",
+  "dependencies": {
+    "react": "16.7.0-alpha.0",
+    "react-dom": "16.7.0-alpha.0",
+    "storehook": "0.0.1"
+  },
+  "devDependencies": {
+    "react-scripts": "2.1.1",
+    "react-testing-library": "5.2.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
