@@ -18,7 +18,7 @@ const Provider = props => {
   const { reducer } = props
 
   /* We can get the initial state by running the reducer with no state */
-  const initialState = reducer(undefined, { type: '__INTERNAL_INIT__' })
+  const initialState = reducer(undefined, { type: '__STOREHOOK__INIT__' })
 
   /* Create a global store */
   const [state, dispatch] = useReducer(reducer, initialState)
