@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react'
 
 /* Hooks are going to be introduced in 16.7 */
 if (!React.version.includes('16.7'))
-  console.warn('storehook needs a React version >=16.7.0-alpha.0')
+  console.error('storehook needs a React version >=16.7.0-alpha.0')
 
 /*
   Create a global store context
