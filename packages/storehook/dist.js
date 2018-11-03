@@ -20,7 +20,7 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* Hooks are going to be introduced in 16.7 */
-if (!_react.default.version.includes('16.7')) console.warn('storehook needs a React version >=16.7.0-alpha.0');
+if (!_react.default.version.includes('16.7')) console.error('storehook needs a React version >=16.7.0-alpha.0');
 /*
   Create a global store context
   We use this to pass the reducer to every connected component
@@ -38,7 +38,7 @@ var Provider = function Provider(props) {
   /* We can get the initial state by running the reducer with no state */
 
   var initialState = reducer(undefined, {
-    type: '__INTERNAL_INIT__'
+    type: '__STOREHOOK__INIT__'
   });
   /* Create a global store */
 
