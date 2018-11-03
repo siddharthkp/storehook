@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react'
 
 /* Hooks are going to be introduced in 16.7 */
 if (!React.version.includes('16.7'))
-  console.warn('storehook needs a React version >=16.7.0-alpha.0')
+  console.error('storehook needs a React version >=16.7.0-alpha.0')
 
 /*
   Create a global store context
@@ -18,7 +18,7 @@ const Provider = props => {
   const { reducer } = props
 
   /* We can get the initial state by running the reducer with no state */
-  const initialState = reducer(undefined, { type: '__INTERNAL_INIT__' })
+  const initialState = reducer(undefined, { type: '__STOREHOOK__INIT__' })
 
   /* Create a global store */
   const [state, dispatch] = useReducer(reducer, initialState)
