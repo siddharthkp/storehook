@@ -1,11 +1,11 @@
 {
   "name": "test-application",
   "version": "0.0.0",
-  "private": "true",
+  "private": true,
   "dependencies": {
     "react": "16.7.0-alpha.0",
     "react-dom": "16.7.0-alpha.0",
-    "storehook": "^0.0.3"
+    "storehook": "^0.0.6"
   },
   "devDependencies": {
     "react-scripts": "2.1.1",

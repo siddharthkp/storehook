@@ -1,14 +1,14 @@
 {
   "name": "storehook-monorepo",
   "version": "0.0.0",
-  "private": "true",
+  "private": true,
   "description": "silly state management library built with hooks",
   "author": "siddharthkp",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "babel packages/storehook/index.js -o packages/storehook/dist.js --presets=@babel/env,@babel/react",
+    "build": "babel packages/storehook/index.js -o packages/storehook/dist/index.js --presets=@babel/env,@babel/react",
     "test": "cd packages/test-application && yarn test"
   },
   "devDependencies": {
