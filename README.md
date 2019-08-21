@@ -12,9 +12,17 @@
 npm install storehook
 ```
 
-`storehook` has a peer dependency of `react@16.7`
+`storehook` has a peer dependency of `react >= 16.x`
 
 &nbsp;
+
+### example
+
+An online demo is available at CodeSandbox:
+
+- https://codesandbox.io/s/live-demo-storehook-78gwz
+
+If you've any problem, **open an issue with a CodeSandbox link with your issue**
 
 #### usage
 
