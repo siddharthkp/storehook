@@ -6,28 +6,30 @@
   <img src="https://travis-ci.org/siddharthkp/storehook.svg?branch=master&maxAge=3600"/>
 </p>
 
-&nbsp;
-
-⚠️ Hooks are still in alpha, this is just an example library. Don't use this on production.
-
-&nbsp;
-
 #### install
 
 ```
 npm install storehook
 ```
 
-`storehook` has a peer dependency of `react@16.7`
+`storehook` has a peer dependency of `react >= 16.x`
 
 &nbsp;
+
+### example
+
+An online demo is available at CodeSandbox:
+
+- https://codesandbox.io/s/live-demo-storehook-78gwz
+
+If you've any problem, **open an issue with a CodeSandbox link with your issue**
 
 #### usage
 
 ```js
-import React from 'react'
-import { Provider, useStore } from 'storehook'
-import reducer from './reducer'
+import React from 'react';
+import { Provider, useStore } from 'storehook';
+import reducer from './reducer';
 
 /*
   Call useStore inside a functional component
@@ -35,10 +37,10 @@ import reducer from './reducer'
 */
 
 const Counter = props => {
-  const [store, dispatch] = useStore()
+  const [store, dispatch] = useStore();
 
-  const increase = () => dispatch({ type: 'INCREASE' })
-  const decrease = () => dispatch({ type: 'DECREASE' })
+  const increase = () => dispatch({ type: 'INCREASE' });
+  const decrease = () => dispatch({ type: 'DECREASE' });
 
   return (
     <p>
@@ -46,38 +48,38 @@ const Counter = props => {
       <span id="badge">{store.count}</span>
       <span onClick={decrease}>-</span>
     </p>
-  )
-}
+  );
+};
 
 /* Wrap your top level App component in a Provider with the reducer */
 export default () => (
   <Provider reducer={reducer}>
     <App />
   </Provider>
-)
+);
 
 /*
   This is what the reducer looks like
   Don't forget to provide initial state in the reducer
 */
 
-const initialState = { count: 0 }
+const initialState = { count: 0 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INCREASE':
       return {
         ...state,
-        count: state.count + 1
-      }
+        count: state.count + 1,
+      };
     case 'DECREASE':
       return {
         ...state,
-        count: state.count - 1
-      }
+        count: state.count - 1,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 ```
 
 &nbsp;
@@ -87,13 +89,13 @@ const reducer = (state = initialState, action) => {
 `storehook` exports a `connect` higher order component that can be used with class components
 
 ```js
-import React from 'react'
-import { Provider, connect } from 'storehook'
-import reducer from './reducer'
+import React from 'react';
+import { Provider, connect } from 'storehook';
+import reducer from './reducer';
 
 class ClassCounter extends React.Component {
-  increase = () => this.props.dispatch({ type: 'INCREASE' })
-  decrease = () => this.props.dispatch({ type: 'DECREASE' })
+  increase = () => this.props.dispatch({ type: 'INCREASE' });
+  decrease = () => this.props.dispatch({ type: 'DECREASE' });
 
   render() {
     return (
@@ -102,7 +104,7 @@ class ClassCounter extends React.Component {
         <span id="badge">{this.props.count}</span>
         <span onClick={this.decrease}>-</span>
       </p>
-    )
+    );
   }
 }
 
@@ -110,14 +112,14 @@ class ClassCounter extends React.Component {
   Use connect from storehook to get access to the store variables and
   dispatch function in props
 */
-const ConnectedCounter = connect(ClassCounter)
+const ConnectedCounter = connect(ClassCounter);
 
 /* Wrap your top level App component in a Provider with the reducer */
 export default () => (
   <Provider reducer={reducer}>
     <App />
   </Provider>
-)
+);
 ```
 
 #### how does it work?

@@ -1,44 +1,40 @@
-import React, { useContext, useReducer } from 'react'
+import * as React from 'react';
 
-/* Hooks are going to be introduced in 16.7 */
-if (!React.version.includes('16.7'))
-  console.error('storehook needs a React version >=16.7.0-alpha.0')
-
-/*
-  Create a global store context
-  We use this to pass the reducer to every connected component
-*/
-const StoreContext = React.createContext()
+const StoreContext = React.createContext<any>(undefined);
 
 /*
   This is the component that is wrapped around the top level App
   We use the context Provider here to pass the reducer
 */
-const Provider = props => {
-  const { reducer } = props
+const Provider = <
+  P extends { reducer: React.Reducer<any, any>; children: React.ReactNode }
+>(
+  props: P
+) => {
+  const { reducer } = props;
 
   /* We can get the initial state by running the reducer with no state */
-  const initialState = reducer(undefined, { type: '__STOREHOOK__INIT__' })
+  const initialState = reducer(undefined, { type: '__STOREHOOK__INIT__' });
 
   /* Create a global store */
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <StoreContext.Provider value={{ state, dispatch }}>
       {props.children}
     </StoreContext.Provider>
-  )
-}
+  );
+};
 
 /* useStore */
 
 const useStore = () => {
   /* Grab the state and dispatch function with useContext hook */
-  const { state, dispatch } = useContext(StoreContext)
+  const { state, dispatch } = React.useContext(StoreContext);
 
   /* Instead of rendering component, pass an array pair - hook style */
-  return [state, dispatch]
-}
+  return [state, dispatch];
+};
 
 /*
   connect is a higher order component that passes state values
@@ -48,21 +44,21 @@ const useStore = () => {
   that does
 */
 
-const connect = Component => {
+const connect = (Component: React.ComponentType) => {
   /* Create a new component that will be returned instead of the original */
 
-  const ConnectedComponent = props => {
+  const ConnectedComponent = <P extends {}>(props: P) => {
     /* Get state and dispatch function from our useStore hook! */
-    const [state, dispatch] = useStore()
+    const [state, dispatch] = useStore();
 
     /*
       Render the original component with it's props and add
       additional props for state and dispatch
     */
-    return <Component {...props} {...state} dispatch={dispatch} />
-  }
+    return <Component {...props} {...state} dispatch={dispatch} />;
+  };
 
-  return ConnectedComponent
-}
+  return ConnectedComponent;
+};
 
-export { Provider, connect, useStore }
+export { Provider, connect, useStore };

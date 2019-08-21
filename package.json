@@ -1,21 +1,45 @@
 {
-  "name": "storehook-monorepo",
-  "version": "0.0.0",
-  "private": true,
+  "name": "storehook",
   "description": "silly state management library built with hooks",
+  "version": "1.0.0",
   "author": "siddharthkp",
-  "workspaces": [
-    "packages/*"
+  "main": "dist/index.js",
+  "module": "dist/mylib.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
   ],
   "scripts": {
-    "build": "babel packages/storehook/index.js -o packages/storehook/dist/index.js --presets=@babel/env,@babel/react",
-    "test": "cd packages/test-application && yarn test"
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --env=jsdom",
+    "lint": "tsdx lint"
   },
-  "devDependencies": {
-    "@babel/cli": "7.1.2"
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "prettier": {
-    "semi": false,
-    "singleQuote": true
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "husky": "^3.0.4",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "tsdx": "^0.8.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.5.3"
   }
 }
